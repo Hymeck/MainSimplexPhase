@@ -24,12 +24,13 @@ namespace MainSimplexPhase.Core
         private static SimplexResult ToResult(MutableSimplexMainPhase phase)
         {
             var x = phase.Solution.ToImmutableArray();
+            var indices = phase.B.ToImmutableSortedSet();
             
             var result = 0.0;
             foreach (var (a, b) in x.Zip(phase.ObjectiveFunctionComponents)) 
                 result += a * b;
             
-            return new SimplexResult(x, result);
+            return new SimplexResult(indices, x, result);
         }
     }
 }
