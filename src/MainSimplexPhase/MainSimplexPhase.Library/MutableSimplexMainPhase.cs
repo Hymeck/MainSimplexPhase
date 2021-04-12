@@ -9,20 +9,17 @@ namespace MainSimplexPhase.Core
     {
         public Matrix<double> Conditions;
         public Vector<double> ObjectiveFunctionComponents;
-        public Vector<double> Constraints;
         public Vector<double> Solution;
         public SortedSet<int> B;
         public SortedSet<int> N;
 
         public MutableSimplexMainPhase(Matrix<double> conditions,
             Vector<double> objectiveFunctionComponents,
-            Vector<double> constraints,
             Vector<double> solution,
             SortedSet<int> b)
         {
             Conditions = conditions;
             ObjectiveFunctionComponents = objectiveFunctionComponents;
-            Constraints = constraints;
             Solution = solution;
             B = b;
             var n = new SortedSet<int>(Enumerable.Range(0, objectiveFunctionComponents.Count));

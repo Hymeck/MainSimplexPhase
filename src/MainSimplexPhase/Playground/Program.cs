@@ -28,7 +28,7 @@ namespace Playground
             var initialSolution = new double[] {0, 0, 1, 3, 2};
             var basisIndices = new SortedSet<int>(new[] {2, 3, 4});
 
-            var simplexService = new SimplexMainPhaseService(conditions, objectiveFunctionComponents, constraints,
+            var simplexService = new SimplexMainPhaseService(conditions, objectiveFunctionComponents,
                 initialSolution, basisIndices);
 
             var result = simplexService.Maximize();
@@ -50,7 +50,7 @@ namespace Playground
             var initialSolution = new double[] {1, 0, 0, 3};
             var basisIndices = new SortedSet<int>(new[] {0, 3});
 
-            var simplexService = new SimplexMainPhaseService(conditions, objectiveFunctionComponents, constraints,
+            var simplexService = new SimplexMainPhaseService(conditions, objectiveFunctionComponents,
                 initialSolution, basisIndices);
 
             var result = simplexService.Maximize();
@@ -74,7 +74,7 @@ namespace Playground
             var initialSolution = new double[] {0, 0, 50, 16, 9, 7};
             var basisIndices = new SortedSet<int>(new[] {2, 3, 4, 5});
 
-            var simplexService = new SimplexMainPhaseService(conditions, objectiveFunctionComponents, constraints,
+            var simplexService = new SimplexMainPhaseService(conditions, objectiveFunctionComponents,
                 initialSolution, basisIndices);
 
             var result = simplexService.Maximize();

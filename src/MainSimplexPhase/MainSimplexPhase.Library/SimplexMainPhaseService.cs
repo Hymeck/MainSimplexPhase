@@ -10,24 +10,19 @@ namespace MainSimplexPhase.Core
     {
         public readonly double[,] Conditions;
         public readonly double[] ObjectiveFunctionComponents;
-        public readonly double[] Constraints;
         public readonly double[] InitialSolution;
         public readonly ISet<int> BasisIndices;
 
         public SimplexMainPhaseService(
             [NotNull] double[,] conditions,
             [NotNull] double[] objectiveFunctionComponents,
-            [NotNull] double[] constraints,
             [NotNull] double[] initialSolution,
             [NotNull] ISet<int> basisIndices
         )
         {
             var condRowCount = conditions.GetLength(0);
             var condColumnCount = conditions.GetLength(1);
-
-            if (constraints.Length != condRowCount)
-                throw new ArgumentException("Dimension of constraints does not fit with condition matrix.",
-                    nameof(constraints));
+            
             if (objectiveFunctionComponents.Length != condColumnCount)
                 throw new ArgumentException(
                     "Dimension of objective function components does not fit with condition matrix.",
@@ -40,7 +35,6 @@ namespace MainSimplexPhase.Core
 
             Conditions = conditions;
             ObjectiveFunctionComponents = objectiveFunctionComponents;
-            Constraints = constraints;
             InitialSolution = initialSolution;
             BasisIndices = basisIndices;
         }
@@ -57,11 +51,10 @@ namespace MainSimplexPhase.Core
 
             var A = Matrix<double>.Build.SparseOfArray(Conditions);
             var c = ToVector(ObjectiveFunctionComponents);
-            var b = ToVector(Constraints);
             var x = ToVector(InitialSolution);
             var Jb = ToSortedSet(BasisIndices);
 
-            return SimplexMainPhaseLogic.Maximize(A, c, b, x, Jb);
+            return SimplexMainPhaseLogic.Maximize(A, c, x, Jb);
         }
     }
 }

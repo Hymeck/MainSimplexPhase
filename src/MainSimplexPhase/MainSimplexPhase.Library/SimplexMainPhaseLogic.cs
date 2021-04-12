@@ -10,12 +10,10 @@ namespace MainSimplexPhase.Core
         public static SimplexResult Maximize(
             Matrix<double> conditions,
             Vector<double> objectiveFunctionComponents,
-            Vector<double> constraints,
             Vector<double> initialSolution,
             SortedSet<int> basisIndices)
         {
-            var phase = new MutableSimplexMainPhase(conditions, objectiveFunctionComponents, constraints,
-                initialSolution, basisIndices);
+            var phase = new MutableSimplexMainPhase(conditions, objectiveFunctionComponents, initialSolution, basisIndices);
             phase.Maximize();
 
             return ToResult(phase);
